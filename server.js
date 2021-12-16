@@ -3,6 +3,8 @@ const connectDB = require('./config/db');
 const app = express();
 connectDB();
 const PORT = process.env.PORT||5000;
+//Initialize middleware
+app.use(express.json({extended:false}));
 app.get("/",(req,res)=>{
     console.log('Hello from server.');
     res.send("NAMASTE WORLD");
