@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const {check,validationResult} = require('express-validator/check');
+//Require JWT
+const jwt = require("jsonwebtoken");
+//Require config
+const config = require("config");
 //Require gravatar
 const gravatar = require("gravatar");
 //Require Schema
@@ -48,7 +52,24 @@ router.post("/",[
         user.password = await bcrypt.hash(password,salt);
         await user.save();
         //JSONWEBTOKEN
-        res.send("Users Routes");
+        //PAYLOAD
+        const payload = {
+            user:{
+                id:user.id
+            }
+        }
+        //Sign the JWT token
+        jwt.sign(
+            payload,
+            config.get('jwtSecret'),
+            {
+            expiresIn:3600//OPTIONAL
+        },(err,token)=>{
+            if(err){
+                throw err;
+            }
+            res.json(token)
+        })
     }
     catch(err){
         console.error(err.message);

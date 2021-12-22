@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://R1i2:AlokrajRishavraj@devconnector.1blcb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://R1i2:AlokrajRishavraj@devconnector.1blcb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret":"mysecrettoken"
 }
