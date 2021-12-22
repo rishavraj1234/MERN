@@ -26,7 +26,6 @@ router.post("/",[
     //See if user exists
     const {name,email,password} = req.body;
     try{
-        console.log("Try block executed inside the user js");
         let user = await User.findOne({email:email});
         if(user)
         {
